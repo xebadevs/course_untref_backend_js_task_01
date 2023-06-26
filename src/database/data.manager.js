@@ -77,4 +77,21 @@ async function createNewGuitar(guitar) {
     return guitarWithId;
 }
 
-module.exports = { findAll, findOneById, createNewGuitar };
+async function update(guitar) {
+
+    if (!guitar.id || !guitar.brand || !guitar.color)
+    throw new Error("Error. Incomplete data.");
+
+    const guitars = await read();
+    const index = guitars.findIndex((guitar) => guitar.id === guitar.id);
+
+    if (!guitar)
+        throw new Error("Error. There's any guitar with the given ID.");
+
+    guitars[index] = guitar;
+    await write(guitars);
+
+    return guitar;
+}
+
+module.exports = { findAll, findOneById, createNewGuitar, update };

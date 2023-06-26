@@ -1,5 +1,5 @@
 const express = require("express");
-const { findAll, findOneById, createNewGuitar } = require("./database/data.manager.js");
+const { findAll, findOneById, createNewGuitar, update } = require("./database/data.manager.js");
 
 const server = express();
 const PORT = 3000;
@@ -33,9 +33,12 @@ server.post('/guitars', (req, res) => {
 });
 
 server.put('/guitars/:id', (req, res) => {
-    const { brand } = req.body;
+    const { id } = req.params;
+    const { brand, color } = req.body;
 
-    res.status(200).send("This is a put method " + brand);
+    update({ id: Number(id), brand, color })
+        .then((guitars) => res.status(200).send(guitars))
+        .catch((error) => res.status(400).send(error.message));
 });
 
 server.delete('/guitars/:id', (req, res) => {
