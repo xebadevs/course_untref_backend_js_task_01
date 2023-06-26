@@ -7,8 +7,15 @@ const HOST = "127.0.0.1";
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
-server.get('/guitars/:id', (req, res) => {
-    // res.status(200).send("The server is running");
+server.get('/guitars', (req, res) => {
+
+    const {id} = req.params;
+    const {color} = req.query;
+
+    res.status(200).send(id + color);
+});
+
+server.get('/guitar/:id', (req, res) => {
 
     const {id} = req.params;
     const {color} = req.query;
@@ -22,7 +29,7 @@ server.post('/guitars', (req, res) => {
     res.status(200).send("This is a post method " + brand);
 });
 
-server.put('/guitars', (req, res) => {
+server.put('/guitar/:id', (req, res) => {
     const { brand } = req.body;
 
     res.status(200).send("This is a put method " + brand);
