@@ -1,4 +1,5 @@
 const express = require("express");
+const { findAll } = require("./database/data.manager.js");
 
 const server = express();
 const PORT = 3000;
@@ -9,10 +10,9 @@ server.use(express.urlencoded({ extended: true }));
 
 server.get('/guitars', (req, res) => {
 
-    const {id} = req.params;
-    const {color} = req.query;
-
-    res.status(200).send(id + color);
+    findAll()
+        .then((guitars) => res.status(200).json(guitars))
+        .catch((error) => res.status(400).send(error));
 });
 
 server.get('/guitar/:id', (req, res) => {

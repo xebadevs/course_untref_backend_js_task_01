@@ -8,9 +8,9 @@ function write(content) {
         fs.writeFile(route, JSON.stringify(content, null, "\t"), "utf8", (error) => {
 
             if (error)
-                reject(new Error("Error at writing the file."));
+                rej(new Error("Error at writing the file."));
 
-        resolve(true);
+        res(true);
 
         });
     });
@@ -18,12 +18,12 @@ function write(content) {
 
 function read() {
     return new Promise((res, rej) => {
-        fs.writeFile(route, content, "utf8", (error, content) => {
+        fs.readFile(route, "utf8", (error, content) => {
 
             if (error)
-                reject(new Error("Error at reading the file."));
+                rej(new Error("Error at reading the file."));
 
-        resolve(JSON.parse(content));
+        res(JSON.parse(content));
 
         });
     });
@@ -39,3 +39,11 @@ function setNewGuitarId(id) {
 
     return biggestId + 1;
 }
+
+async function findAll() {
+    const guitars = await read();
+
+    return guitars;
+}
+
+module.exports = { findAll };

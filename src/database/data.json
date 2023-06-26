@@ -1,1 +1,7 @@
-[]
+[
+    {
+        "id": 1,
+        "brand": "PRS",
+        "color": "perl blue"
+    }
+]
