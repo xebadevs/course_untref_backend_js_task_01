@@ -1,5 +1,5 @@
 const express = require("express");
-const { findAll, findOneById } = require("./database/data.manager.js");
+const { findAll, findOneById, createNewGuitar } = require("./database/data.manager.js");
 
 const server = express();
 const PORT = 3000;
@@ -11,26 +11,28 @@ server.use(express.urlencoded({ extended: true }));
 server.get('/guitars', (req, res) => {
 
     findAll()
-        .then((guitars) => res.status(200).json(guitars))
-        .catch((error) => res.status(400).send(error));
+        .then((guitars) => res.status(200).send(guitars))
+        .catch((error) => res.status(400).send(error.message));
 });
 
-server.get('/guitar/:id', (req, res) => {
+server.get('/guitars/:id', (req, res) => {
 
     const { id } = req.params;
 
     findOneById(Number(id))
-        .then((guitar) => res.status(200).json(guitar))
-        .catch((error) => res.status(400).send(error));
+        .then((guitar) => res.status(200).send(guitar))
+        .catch((error) => res.status(400).send(error.message));
 });
 
 server.post('/guitars', (req, res) => {
-    const { brand } = req.body;
+    const { brand, color } = req.body;
 
-    res.status(200).send("This is a post method " + brand);
+    createNewGuitar({ brand, color })
+        .then((guitars) => res.status(201).send(guitars))
+        .catch((error) => res.status(400).send(error.message));
 });
 
-server.put('/guitar/:id', (req, res) => {
+server.put('/guitars/:id', (req, res) => {
     const { brand } = req.body;
 
     res.status(200).send("This is a put method " + brand);

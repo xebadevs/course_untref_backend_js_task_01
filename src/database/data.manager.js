@@ -29,7 +29,7 @@ function read() {
     });
 }
 
-function setNewGuitarId(id) {
+function setNewGuitarId(guitars) {
     let biggestId = 0;
 
     guitars.forEach(guitar => {
@@ -43,6 +43,9 @@ function setNewGuitarId(id) {
 async function findAll() {
     const guitars = await read();
 
+    if (!guitars)
+        throw new Error("Error. There's no guitars saved at the moment.");
+
     return guitars;
 }
 
@@ -53,7 +56,25 @@ async function findOneById(id) {
     const guitars = await read();
     const guitar = guitars.find((guitar) => guitar.id === id);
 
+    if (!guitar)
+        throw new Error("Error. There's any guitar with the given ID.");
+
     return guitar;
 }
 
-module.exports = { findAll, findOneById };
+async function createNewGuitar(guitar) {
+
+    if (!guitar.brand || !guitar.color)
+        throw new Error("Error. Incomplete data.");
+
+    let guitars = await read();
+    const guitarWithId = { id: setNewGuitarId(guitars), ...guitar };
+
+    guitars.push(guitarWithId);
+
+    await write(guitars);
+
+    return guitarWithId;
+}
+
+module.exports = { findAll, findOneById, createNewGuitar };

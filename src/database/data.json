@@ -1,7 +1,12 @@
 [
-    {
-        "id": 1,
-        "brand": "PRS",
-        "color": "perl blue"
-    }
+	{
+		"id": 1,
+		"brand": "PRS",
+		"color": "perl blue"
+	},
+	{
+		"id": 2,
+		"brand": "jackson",
+		"color": "black"
+	}
 ]
