@@ -1,5 +1,5 @@
 const express = require("express");
-const { findAll } = require("./database/data.manager.js");
+const { findAll, findOneById } = require("./database/data.manager.js");
 
 const server = express();
 const PORT = 3000;
@@ -17,10 +17,11 @@ server.get('/guitars', (req, res) => {
 
 server.get('/guitar/:id', (req, res) => {
 
-    const {id} = req.params;
-    const {color} = req.query;
+    const { id } = req.params;
 
-    res.status(200).send(id + color);
+    findOneById(Number(id))
+        .then((guitar) => res.status(200).json(guitar))
+        .catch((error) => res.status(400).send(error));
 });
 
 server.post('/guitars', (req, res) => {

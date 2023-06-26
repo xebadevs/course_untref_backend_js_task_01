@@ -46,4 +46,14 @@ async function findAll() {
     return guitars;
 }
 
-module.exports = { findAll };
+async function findOneById(id) {
+
+    if (!id) throw new Error("Error. Undefined ID");
+
+    const guitars = await read();
+    const guitar = guitars.find((guitar) => guitar.id === id);
+
+    return guitar;
+}
+
+module.exports = { findAll, findOneById };
