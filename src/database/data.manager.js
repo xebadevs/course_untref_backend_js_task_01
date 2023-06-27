@@ -44,7 +44,7 @@ async function findAll() {
     const guitars = await read();
 
     if (!guitars)
-        throw new Error("Error. There's no guitars saved at the moment.");
+        throw new Error("Error. There is no guitars saved at this time.");
 
     return guitars;
 }
@@ -57,7 +57,7 @@ async function findOneById(id) {
     const guitar = guitars.find((guitar) => guitar.id === id);
 
     if (!guitar)
-        throw new Error("Error. There's any guitar with the given ID.");
+        throw new Error("Error. There is no guitar with the given ID.");
 
     return guitar;
 }
@@ -86,7 +86,7 @@ async function update(guitar) {
     const index = guitars.findIndex((guitar) => guitar.id === guitar.id);
 
     if (!guitar)
-        throw new Error("Error. There's any guitar with the given ID.");
+        throw new Error("Error. There is no guitar with the given ID.");
 
     guitars[index] = guitar;
     await write(guitars);
@@ -103,7 +103,7 @@ async function destroy(id) {
     const index = guitars.findIndex((guitar) => guitar.id === id);
 
     if (!index)
-        throw new Error("Error. There's any guitar with the given ID.");
+        throw new Error("Error. There is no guitar with the given ID.");
 
     guitars.splice(index, 1);
     await write(guitars);
