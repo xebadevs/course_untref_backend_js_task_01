@@ -94,4 +94,21 @@ async function update(guitar) {
     return guitar;
 }
 
-module.exports = { findAll, findOneById, createNewGuitar, update };
+async function destroy(id) {
+
+    if (!id) throw new Error("Error. Undefined ID");
+
+    const guitars = await read();
+    const guitar = guitars.find((guitar) => guitar.id === id);
+    const index = guitars.findIndex((guitar) => guitar.id === id);
+
+    if (!index)
+        throw new Error("Error. There's any guitar with the given ID.");
+
+    guitars.splice(index, 1);
+    await write(guitars);
+
+    return guitar;
+}
+
+module.exports = { findAll, findOneById, createNewGuitar, update, destroy };
