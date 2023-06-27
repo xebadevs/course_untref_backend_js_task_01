@@ -1,11 +1,16 @@
 [
 	{
-		"id": 2,
-		"brand": "jackson",
-		"color": "white"
+		"id": 1,
+		"brand": "texas",
+		"color": "pink"
 	},
 	{
 		"id": 2,
+		"brand": "texas",
+		"color": "pink"
+	},
+	{
+		"id": 3,
 		"brand": "jackson",
 		"color": "black"
 	}

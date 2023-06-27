@@ -108,7 +108,7 @@ async function destroy(id) {
     guitars.splice(index, 1);
     await write(guitars);
 
-    return guitar;
+    return "Guitar succesfullly removed.";
 }
 
 module.exports = { findAll, findOneById, createNewGuitar, update, destroy };
