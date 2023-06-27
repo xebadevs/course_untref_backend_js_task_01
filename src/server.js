@@ -1,9 +1,9 @@
 const express = require("express");
 const { findAll, findOneById, createNewGuitar, update, destroy } = require("./database/data.manager.js");
 
+require("dotenv").config();
+
 const server = express();
-const PORT = 3000;
-const HOST = "127.0.0.1";
 
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
@@ -49,4 +49,4 @@ server.delete('/guitars/:id', (req, res) => {
         .catch((error) => res.status(400).send(error.message));
 });
 
-server.listen(PORT, HOST, () => console.log(`Ejecutandose en http://${HOST}:${PORT}`));
+server.listen(process.env.SERVER_PORT, process.env.SERVER_HOST, () => console.log(`Ejecutandose en http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`));
