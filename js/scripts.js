@@ -45,3 +45,21 @@ function updateGuitar(guitarId, updatedData) {
             console.error('Error', error);
         });
 }
+
+function deleteGuitar(guitarId) {
+
+    fetch('http://localhost:3000/guitars/${guitarId}', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedData)
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error('Error', error);
+        });
+}
