@@ -113,7 +113,7 @@ async function destroy(id) {
 
 async function fallbackUrl() {
     throw new Error(
-        JSON.stringify({"error": 404})
+        JSON.stringify({"error": "You should take some programming classes at UNTREF"})
     );
 }
 
