@@ -111,4 +111,10 @@ async function destroy(id) {
     return "Guitar succesfullly removed.";
 }
 
-module.exports = { findAll, findOneById, createNewGuitar, update, destroy };
+async function fallbackUrl() {
+    throw new Error(
+        JSON.stringify({"error": 404})
+    );
+}
+
+module.exports = { findAll, findOneById, createNewGuitar, update, destroy, fallbackUrl };

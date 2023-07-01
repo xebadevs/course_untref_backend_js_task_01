@@ -1,5 +1,5 @@
 const express = require("express");
-const { findAll, findOneById, createNewGuitar, update, destroy } = require("./database/data.manager.js");
+const { findAll, findOneById, createNewGuitar, update, destroy, fallbackUrl } = require("./database/data.manager.js");
 
 require("dotenv").config();
 
@@ -49,8 +49,11 @@ server.delete('/guitars/:id', (req, res) => {
         .catch((error) => res.status(400).send(error.message));
 });
 
-server.use('*', (request, response) => {
-    response.status(404).send(`<h1>Error 404</h1><h3>La URL indicada no existe en este servidor</h3>`);
+server.use('*', (req, res) => {
+    // response.status(404).send(`<h1>Error 404</h1><h3>La URL indicada no existe en este servidor</h3>`);
+
+    fallbackUrl()
+        .catch((error) => res.status(400).send(error.message));
 });
 
 server.listen(process.env.SERVER_PORT, process.env.SERVER_HOST, () => console.log(`Ejecutandose en http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`));
