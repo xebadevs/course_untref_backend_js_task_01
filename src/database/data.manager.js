@@ -64,8 +64,8 @@ async function findOneById(id) {
 
 async function createNewGuitar(guitar) {
 
-    if (!guitar.brand || !guitar.color)
-        throw new Error("Error. Incomplete data.");
+    if (!guitar.brand || !guitar.model || !guitar.color || !guitar.price)
+        throw new Error("Error. Please complete all the guitar fields.");
 
     let guitars = await read();
     const guitarWithId = { id: setNewGuitarId(guitars), ...guitar };
@@ -80,7 +80,7 @@ async function createNewGuitar(guitar) {
 async function update(guitar) {
 
     if (!guitar.id || !guitar.brand || !guitar.color)
-    throw new Error("Error. Incomplete data.");
+    throw new Error("Error. Please complete all the guitar fields.");
 
     const guitars = await read();
     const index = guitars.findIndex((guitar) => guitar.id === guitar.id);

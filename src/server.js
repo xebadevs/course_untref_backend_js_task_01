@@ -25,9 +25,9 @@ server.get('/guitars/:id', (req, res) => {
 });
 
 server.post('/guitars', (req, res) => {
-    const { brand, color } = req.body;
+    const { brand, model, color, price } = req.body;
 
-    createNewGuitar({ brand, color })
+    createNewGuitar({ brand, model, color, price })
         .then((guitars) => res.status(201).send(guitars))
         .catch((error) => res.status(400).send(error.message));
 });
