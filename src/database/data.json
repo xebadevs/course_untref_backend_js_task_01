@@ -2,46 +2,27 @@
 	{
 		"id": 1,
 		"brand": "PRS",
-		"origin": "USA",
 		"model": "Mikael Akerfeldt Signature",
 		"color": "metallic red",
-		"frets": 24,
 		"price": 871.54
 	},
 	{
 		"id": 2,
 		"brand": "Jackson",
-		"origin": "Japan",
 		"model": "PS1 Performer",
 		"color": "black",
-		"frets": 24,
 		"price": 371.19
 	},
 	{
 		"id": 3,
 		"brand": "Texas",
-		"origin": "Mexico",
 		"model": "Strato",
 		"color": "pale red",
-		"frets": 21,
 		"price": 190.55
 	},
 	{
 		"id": 4,
-		"brand": "Pacific",
-		"origin": "Taiwan",
-		"model": "Strato",
-		"color": "tonewood",
-		"frets": 21,
-		"price": 283.13
-	},
-	{
-		"id": 5,
-		"brand": "Gibson",
-		"origin": "USA",
-		"model": "Les Paul",
-		"color": "golden",
-		"frets": 21,
-		"price": 496.67
+		"brand": "Fender",
+		"color": "white"
 	}
 ]

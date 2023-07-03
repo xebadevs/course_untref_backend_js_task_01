@@ -34,9 +34,9 @@ server.post('/guitars', (req, res) => {
 
 server.put('/guitars/:id', (req, res) => {
     const { id } = req.params;
-    const { brand, color } = req.body;
+    const { brand, model, color, price } = req.body;
 
-    update({ id: Number(id), brand, color })
+    update({ id: Number(id), brand, model, color, price: Number(price) })
         .then((guitars) => res.status(200).send(guitars))
         .catch((error) => res.status(400).send(error.message));
 });
