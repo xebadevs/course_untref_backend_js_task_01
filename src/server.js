@@ -27,7 +27,7 @@ server.get('/guitars/:id', (req, res) => {
 server.post('/guitars', (req, res) => {
     const { brand, model, color, price } = req.body;
 
-    createNewGuitar({ brand, model, color, price })
+    createNewGuitar({ brand, model, color, price: Number(price) })
         .then((guitars) => res.status(201).send(guitars))
         .catch((error) => res.status(400).send(error.message));
 });
@@ -50,7 +50,6 @@ server.delete('/guitars/:id', (req, res) => {
 });
 
 server.use('*', (req, res) => {
-    // response.status(404).send(`<h1>Error 404</h1><h3>La URL indicada no existe en este servidor</h3>`);
 
     fallbackUrl()
         .catch((error) => res.status(400).send(error.message));

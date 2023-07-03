@@ -77,21 +77,21 @@ async function createNewGuitar(guitar) {
     return guitarWithId;
 }
 
-async function update(guitar) {
+async function update(updatedGuitar) {
 
-    if (!guitar.id || !guitar.brand || !guitar.color)
+    if (!updatedGuitar.id || !updatedGuitar.model || !updatedGuitar.brand || !updatedGuitar.color || !updatedGuitar.price)
     throw new Error("Error. Please complete all the guitar fields.");
 
     const guitars = await read();
-    const index = guitars.findIndex((guitar) => guitar.id === guitar.id);
+    const index = guitars.findIndex((guitar) => guitar.id === updatedGuitar.id);
 
-    if (!guitar)
+    if (index === -1)
         throw new Error("Error. There is no guitar with the given ID.");
 
-    guitars[index] = guitar;
+    guitars[index] = updatedGuitar;
     await write(guitars);
 
-    return guitar;
+    return updatedGuitar;
 }
 
 async function destroy(id) {
@@ -112,6 +112,7 @@ async function destroy(id) {
 }
 
 async function fallbackUrl() {
+    
     throw new Error(
         JSON.stringify({"error": "You should take some programming classes at UNTREF."})
     );

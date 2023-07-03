@@ -1,10 +1,10 @@
 [
 	{
-		"id": 4,
-		"brand": "Bender",
-		"model": "Stratocastro",
-		"color": "blue",
-		"price": 554.88
+		"id": 1,
+		"brand": "PRS",
+		"model": "Mikael Akerfeldt",
+		"color": "metallic red",
+		"price": 814.13
 	},
 	{
 		"id": 2,
@@ -19,12 +19,5 @@
 		"model": "Strato",
 		"color": "pale red",
 		"price": 190.55
-	},
-	{
-		"id": 4,
-		"brand": "Fender",
-		"model": "Stratocaster",
-		"color": "white",
-		"price": "514.67"
 	}
 ]
